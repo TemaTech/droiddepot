@@ -3,20 +3,35 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "DEBUG=droiddepot:* nodemon --exec 'npm run format' ./bin/www",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^16.1.1",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "mongodb": "^5.5.0",
+    "mongoose": "^7.2.2",
     "morgan": "~1.9.1"
   },
   "main": "app.js",
-  "devDependencies": {},
   "keywords": [],
-  "author": "",
+  "author": "TemaTech",
   "license": "ISC",
-  "description": ""
+  "description": "A small invetory app built on Express.js, Mongoose, and EJS.",
+  "devDependencies": {
+    "eslint": "^8.41.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8"
+  }
 }
