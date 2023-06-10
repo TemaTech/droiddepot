@@ -46,38 +46,39 @@
       </div>
       <div class="flex flex-col gap-2">
         <label class="w-fit p-4 hover:text-neutral-100 font-bold hover:bg-neutral-900 rounded-lg hover:drop-shadow-xl bg-transparent border-solid border-2 border-neutral-900 text-neutral-900 transition-all hover:cursor-pointer" for="image">Add an image</label>
-        <input type="file" accept="image" id="image" name="image" class="hidden" onchange="handleFileChange(event)">
+        <input type="file" accept="image" id="image" name="image" class="hidden">
         <div class="flex flex-row gap-4 items-center">
-          <button type="button" id="remove-file" class="hidden w-fit p-1 hover:text-neutral-100 font-bold hover:bg-red-500 rounded-lg hover:drop-shadow-xl bg-transparent border-solid border-2 border-red-500 text-red-500 transition-all hover:cursor-pointer" onclick="removeSelectedFile()">Remove the image</button>
+          <button type="button" id="remove-file" class="hidden w-fit p-1 hover:text-neutral-100 font-bold hover:bg-red-500 rounded-lg hover:drop-shadow-xl bg-transparent border-solid border-2 border-red-500 text-red-500 transition-all hover:cursor-pointer">Remove the image</button>
           <span id="file-name" class="text-neutral-900 hidden font-bold"></span>
         </div>
       </div>
       
       <script>
-        function handleFileChange(event) {
-          const fileInput = event.target;
-          const fileName = document.getElementById('file-name');
-          const removeButton = document.getElementById('remove-file');
-      
-          if (fileInput.files.length > 0) {
-            fileName.textContent = fileInput.files[0].name;
-            fileName.classList.remove('hidden');
-            removeButton.classList.remove('hidden');
-          } else {
-            fileName.classList.add('hidden');
-            removeButton.classList.add('hidden');
-          }
-        }
-      
-        function removeSelectedFile() {
+        document.addEventListener("DOMContentLoaded", function () {
           const fileInput = document.getElementById('image');
           const fileName = document.getElementById('file-name');
           const removeButton = document.getElementById('remove-file');
-      
-          fileInput.value = '';
-          fileName.classList.add('hidden');
-          removeButton.classList.add('hidden');
-        }
+        
+          fileInput.addEventListener('change', handleFileChange);
+          removeButton.addEventListener('click', removeSelectedFile);
+        
+          function handleFileChange(event) {
+            if (fileInput.files.length > 0) {
+              fileName.textContent = fileInput.files[0].name;
+              fileName.classList.remove('hidden');
+              removeButton.classList.remove('hidden');
+            } else {
+              fileName.classList.add('hidden');
+              removeButton.classList.add('hidden');
+            }
+          }
+        
+          function removeSelectedFile() {
+            fileInput.value = '';
+            fileName.classList.add('hidden');
+            removeButton.classList.add('hidden');
+          }
+        });
       </script>
 
       <% if (locals.product?.image) { %>

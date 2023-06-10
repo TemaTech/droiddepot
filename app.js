@@ -32,7 +32,13 @@ mongoose.connection.on("error", (e) => {
 app.use(compression());
 
 // Set up Helmet
-app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "script-src": ["'self'", "'unsafe-inline'"],
+    },
+  })
+);
 
 // Set up rate limiter
 const limiter = RateLimit({
