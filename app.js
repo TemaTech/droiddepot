@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 require("dotenv").config();
 
 const createError = require("http-errors");
@@ -6,6 +7,9 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+const compression = require("compression");
+const helmet = require("helmet");
+const RateLimit = require("express-rate-limit");
 
 const indexRouter = require("./routes/index");
 
@@ -23,6 +27,20 @@ mongoose.connection.once("open", () => {
 mongoose.connection.on("error", (e) => {
   console.error(e);
 });
+
+// Set up compression
+app.use(compression());
+
+// Set up Helmet
+app.use(helmet());
+
+// Set up rate limiter
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 100,
+  max: 100,
+});
+
+app.use(limiter);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

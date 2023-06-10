@@ -4,20 +4,27 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "DEBUG=droiddepot:* nodemon --exec 'npm run format' ./bin/www",
-    "format": "prettier --write ."
+    "dev": "DEBUG=droiddepot:* nodemon --exec 'npm run format && npm run start'",
+    "format": "prettier --write .",
+    "tailwindcss": "npx tailwindcss -i ./public/stylesheets/input.css -o ./public/stylesheets/output.css --watch"
   },
   "dependencies": {
+    "compression": "^1.7.4",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^16.1.1",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "express-async-handler": "^1.2.0",
+    "express-rate-limit": "^6.7.0",
+    "express-validator": "^7.0.1",
+    "helmet": "^7.0.0",
     "http-errors": "~1.6.3",
     "mongodb": "^5.5.0",
     "mongoose": "^7.2.2",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "multer": "^1.4.5-lts.1",
+    "postcss-cli": "^10.1.0"
   },
   "main": "app.js",
   "keywords": [],
@@ -25,6 +32,8 @@
   "license": "ISC",
   "description": "A small invetory app built on Express.js, Mongoose, and EJS.",
   "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "concurrently": "^8.1.0",
     "eslint": "^8.41.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-node": "^4.1.0",
@@ -33,6 +42,9 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.2.1",
     "nodemon": "^2.0.22",
-    "prettier": "^2.8.8"
+    "postcss": "^8.4.24",
+    "prettier": "^2.8.8",
+    "prettier-plugin-tailwindcss": "^0.3.0",
+    "tailwindcss": "^3.3.2"
   }
 }

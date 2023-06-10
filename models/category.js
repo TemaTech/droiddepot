@@ -5,10 +5,15 @@ const { Schema } = mongoose;
 
 const CategorySchema = new Schema({
   name: { type: String, required: true, minLength: 1, maxLength: 100 },
-  desc: { type: String, maxLength: 500 },
-  image: { type: Schema.Types.Buffer },
+  desc: { type: String, maxLength: 300 },
+  image: {
+    data: Buffer,
+    contentType: String,
+  },
 });
 
-CategorySchema.virtual("url").get(() => `/categories/${this._id}`);
+CategorySchema.virtual("url").get(function getURL() {
+  return `/categories/${this._id}`;
+});
 
 module.exports = mongoose.model("Category", CategorySchema, "categories");
