@@ -17,7 +17,7 @@ const app = express();
 
 // connect to MongoDB
 mongoose
-  .connect(process.env.MONGODB_CONNECTION_URL)
+  .connect(process.env.MONGODB_URI || process.env.MONGODB_URI_DEV)
   .catch((e) => console.error(e));
 
 mongoose.connection.once("open", () => {
