@@ -198,7 +198,7 @@ exports.updateProductPOST = [
           }
         : oldProduct.image;
 
-    const product = new Product({
+    const product = {
       _id: oldProduct._id,
       name: req.body.name,
       desc: req.body.desc,
@@ -206,7 +206,7 @@ exports.updateProductPOST = [
       price: req.body.price,
       inStock: req.body.inStock,
       image,
-    });
+    };
 
     if (!errors.isEmpty()) {
       const allCategories = await Category.find().exec();
@@ -218,8 +218,15 @@ exports.updateProductPOST = [
         allCategories,
       });
     } else {
-      await Product.findByIdAndUpdate(req.params.categoryId, product);
-      res.redirect(product.url);
+      await Product.findByIdAndUpdate(req.params.productId, {
+        name: req.body.name,
+        desc: req.body.desc,
+        category: req.body.category,
+        price: req.body.price,
+        inStock: req.body.inStock,
+        image,
+      });
+      res.redirect(oldProduct.url);
     }
   }),
 ];

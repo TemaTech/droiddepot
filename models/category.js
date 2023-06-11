@@ -7,8 +7,8 @@ const CategorySchema = new Schema({
   name: { type: String, required: true, minLength: 1, maxLength: 100 },
   desc: { type: String, maxLength: 300 },
   image: {
-    data: Buffer,
-    contentType: String,
+    data: { type: Buffer, required: true },
+    contentType: { type: String, required: true },
   },
 });
 

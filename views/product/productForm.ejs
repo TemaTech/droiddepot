@@ -82,7 +82,7 @@
       </script>
 
       <% if (locals.product?.image) { %>
-        <img class="object-cover h-40 w-80 rounded-lg drop-shadow-xl" src="data:image/<%= locals.product.image.contentType %>;base64,<%= locals.product.image.data.toString('base64') %>">
+        <img class="object-cover h-40 w-80 rounded-lg drop-shadow-xl" src="data:image/<%= locals.product?.image?.contentType %>;base64,<%= locals.product?.image?.data?.toString('base64') %>">
       <% } %>
 
       <% if (locals.errors) { %>

@@ -72,10 +72,6 @@
           }
         });
       </script>
-
-      <% if (locals.category?.image) { %>
-        <img class="object-cover h-40 w-80 rounded-lg drop-shadow-xl" src="data:image/<%= locals.category.image.contentType %>;base64,<%= locals.category.image.data.toString('base64') %>">
-      <% } %>
       
       <% if (locals.errors) { %>
         <ul>

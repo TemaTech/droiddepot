@@ -20,7 +20,7 @@
   <main class="py-4 px-12 items-center justify-center flex flex-col min-h-screen">
     <form action="" method="POST" class="flex flex-col gap-4">
       <div class="rounded-lg overflow-hidden flex flex-col bg-neutral-50 drop-shadow-sm hover:drop-shadow-xl transition-all h-96">
-        <% if (locals.product.image) { %>
+        <% if (locals.product.image && locals.product) { %>
           <img class="h-64 object-cover" src="data:image/<%= locals.product.image.contentType %>;base64,<%= locals.product.image.data.toString('base64') %>">
         <% } else { %>
           <div class="h-64 bg-neutral-200 flex justify-center items-center">

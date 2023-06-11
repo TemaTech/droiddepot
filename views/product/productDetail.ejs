@@ -19,8 +19,8 @@
   </nav>
   <main class="grid grid-cols-1 grid-rows-2 lg:grid-cols-2 lg:grid-rows-1 gap-12 pb-12 px-12 pt-24 min-h-screen">
     <div class="flex items-center justify-center">
-      <% if (locals.product.image) { %>
-        <img class="object-cover h-full w-full rounded-lg drop-shadow-xl" src="data:image/<%= locals.product.image.contentType %>;base64,<%= locals.product.image.data.toString('base64') %>">
+      <% if (locals.product.image && locals.product) { %>
+        <img class="object-cover h-full w-full rounded-lg drop-shadow-xl" src="data:image/<%= locals.product.image.contentType %>;base64,<%= locals.product.image.data?.toString('base64') %>">
       <% } else { %>
         <div class="h-full w-full rounded-lg drop-shadow-xl bg-neutral-200 flex justify-center items-center">
           <p class="font-bold text-2xl text-neutral-500">No Image :(</p>

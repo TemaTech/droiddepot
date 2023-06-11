@@ -20,18 +20,18 @@
   <main class="py-4 px-12 items-center justify-center flex flex-col min-h-screen">
     <form action="" method="POST" class="flex flex-col gap-4">
       <div class="rounded-lg overflow-hidden flex flex-col bg-neutral-50 drop-shadow-sm hover:drop-shadow-xl transition-all h-96">
-        <% if (locals.category.image) { %>
-          <img class="h-80 object-cover" src="data:image/<%= category.image.contentType %>;base64,<%= locals.category.image.data.toString('base64') %>">
-        <% } else { %>
+        <% if (!locals.category.image) { %>
           <div class="h-80 bg-neutral-200 flex justify-center items-center">
             <p class="font-bold text-xl text-neutral-500">No Image :(</p>
           </div>
+        <% } else { %>
+          <img class="h-80 object-cover" src="data:image/<%= category.image.contentType %>;base64,<%= locals.category.image.data?.toString('base64') %>">
         <% } %>
         <div class="flex flex-col gap-2 p-4">
           <h3 class="text-xl font-bold"><%= locals.category.name %></h3>
         </div>
       </div>
-      <% if (locals.allProductsInTheCategory.length >= 1) { %>
+      <% if (locals.allProductsInTheCategory?.length >= 1) { %>
         <p>You can't delete the category because there are/is <%= locals.allProductsInTheCategory.length %> product(s) in this category.</p>
       <% } %>
       <div class="flex flex-row gap-2 items-center justify-center">

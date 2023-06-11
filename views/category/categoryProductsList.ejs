@@ -31,7 +31,7 @@
         <% for (let i = 0; i < locals.productList.length; i++) { %>
           <a href="/products/<%= locals.productList[i]._id %>" target="_blank">
             <div class="rounded-lg overflow-hidden flex flex-col bg-neutral-50 drop-shadow-sm hover:drop-shadow-xl transition-all h-96">
-              <% if (locals.productList[i].image) { %>
+              <% if (locals.productList[i].image && locals.productList[i]) { %>
                 <img class="h-64 object-cover" src="data:image/<%= locals.productList[i].image.contentType %>;base64,<%= locals.productList[i].image.data.toString('base64') %>">
               <% } else { %>
                 <div class="h-64 bg-neutral-200 flex justify-center items-center">
